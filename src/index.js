@@ -26,17 +26,19 @@ mongoose.connect('mongodb+srv://sa:n3@201-Biel!@omanistack-backend-10-edicao-hjh
 //DEFINE COMUNICAÇÃO ENTRE APLICAÇÕES NO FORMANTO JSON
 app.use(express.json());
 
-app.get('/', (requisicao, resposta) => {
-
-    //RETORNO DE RESPOSTA NO FORMATO TEXTO 
-    return resposta.json({
-        "mensagem": "Eu amo"
-
-    });
-
-});
-
 app.use(routes);
 
 //DEFINE A PORTA DA APLICAÇÃO
-app.listen(1234);
+app.listen(3333, (error) => {
+
+    if (error) {
+
+        console.log('Servidor não conectado...');
+
+    } else {
+
+        console.log('Servidor Conectado...');
+
+    }
+
+});
