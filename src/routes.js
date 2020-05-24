@@ -1,48 +1,15 @@
 const { Router } = require('express');
 
-const axios = require('axios');
-
 const routes = Router();
 
-const Dev = require('./models/dev.js');
+const DevController = require('./controllers/DevController.js');
 
-routes.post('/devs', async(request, response) => {
+const BuscarDev = require('./controllers/BuscarDev.js');
 
-    const { github_username, tecnologias, latitude, longitude } = request.body;
+routes.get("/devs", DevController.getDev);
 
-    const array_techs = tecnologias.split(',').map(tech => tech.trim());
+routes.get("/search", BuscarDev.getDev);
 
-    const api_response = await axios.get(`https://api.github.com/users/${github_username}`);
-
-    const { name = login, avatar_url, bio } = api_response.data;
-
-    const location = {
-        type: "Point",
-        coordinates: [longitude, latitude]
-    }
-
-    const dev = await Dev.create({
-        github_username,
-        name,
-        avatar_url,
-        bio,
-        tecnologias: array_techs,
-        localizacao: location
-    });
-
-    return response.json(dev);
-
-});
-
-routes.get('/', (requisicao, resposta) => {
-
-    //RETORNO DE RESPOSTA NO FORMATO TEXTO 
-    return resposta.json({
-        "mensagem": "Olá, Gabriel Gameleira dos Santos"
-
-    });
-
-});
-
+routes.post('/devs', DevController.postDev);
 
 module.exports = routes;

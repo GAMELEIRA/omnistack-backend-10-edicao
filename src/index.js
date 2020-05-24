@@ -12,7 +12,7 @@ const express = require('express');
 //BIBLIOTECA DE CONEXÃO DO NODE AO MONGO
 const mongoose = require('mongoose');
 
-const routes = require('./routes.js');
+const routes = require('./routes');
 
 //SOBE A APLICAÇÃO
 const app = express();
