@@ -19,7 +19,7 @@ const app = express();
 
 //CONEXÃO COM O BANCO 
 mongoose.connect('mongodb+srv://sa:n3@201-Biel!@omanistack-backend-10-edicao-hjhup.mongodb.net/week10?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
+    useNewUrlParsr: true,
     useUnifiedTopology: true,
 });
 
